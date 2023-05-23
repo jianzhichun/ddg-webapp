@@ -1,12 +1,13 @@
 import re
 from flask import Flask, request, jsonify, Response
-from duckduckgo_search import ddg
+from duckduckgo_search import DDGS
 from newspaper import Article
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "https://chat.openai.com"}})
 
+ddg = DDGS()
 @app.route('/')
 def home():
     return 'Wow, it works!'
@@ -30,7 +31,7 @@ def search():
         max_results = request.args.get('max_results', 3, type=int)
         max_results = min(max_results, 10)
 
-        results = ddg(q, region=region, safesearch=safesearch, time=time, max_results=max_results)
+        results = ddgs.news(q, region=region, safesearch=safesearch, time=time, max_results=max_results)
         response = jsonify(results)
         return response
 
