@@ -28,7 +28,7 @@ def search():
         region = request.args.get('region', 'wt-wt')
         safesearch = request.args.get('safesearch', 'Off')
 
-        results = ddgs.news(q, region=region, safesearch=safesearch)
+        results = list(ddgs.news(q, region=region, safesearch=safesearch))
         response = jsonify(results)
         return response
 
