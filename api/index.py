@@ -7,7 +7,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "https://chat.openai.com"}})
 
-ddg = DDGS()
+ddgs = DDGS()
 @app.route('/')
 def home():
     return 'Wow, it works!'
