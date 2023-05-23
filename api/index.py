@@ -27,10 +27,8 @@ def search():
         q = escape_ddg_bangs(q)
         region = request.args.get('region', 'wt-wt')
         safesearch = request.args.get('safesearch', 'Off')
-        max_results = request.args.get('max_results', 3, type=int)
-        max_results = min(max_results, 10)
 
-        results = ddgs.news(q, region=region, safesearch=safesearch, max_results=max_results)
+        results = ddgs.news(q, region=region, safesearch=safesearch)
         response = jsonify(results)
         return response
 
